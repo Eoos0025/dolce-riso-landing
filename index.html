@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dolce Riso | Arroz con Leche Artesanal</title>
+    <meta
+      name="description"
+      content="Dolce Riso: arroz con leche artesanal y tradicional, de cocción lenta y ingredientes seleccionados."
+    />
+
+    <!-- Google Fonts: Belanosima -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <!-- Tailwind CSS (CDN) + configuración personalizada -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              espresso: '#4A2E1B',
+              toasted: '#8B5A2B',
+              caramel: '#E2B27A',
+              cream: '#FDFBF7',
+              sand: '#F5EBE6',
+            },
+            fontFamily: {
+              sans: ['Belanosima', 'system-ui', 'sans-serif'],
+              display: ['Belanosima', 'system-ui', 'sans-serif'],
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-14px)' },
+              },
+              shadowPulse: {
+                '0%, 100%': {
+                  transform: 'translateX(-50%) scale(1)',
+                  opacity: '.45',
+                },
+                '50%': {
+                  transform: 'translateX(-50%) scale(.82)',
+                  opacity: '.25',
+                },
+              },
+              rise: {
+                '0%': { opacity: '0', transform: 'translateY(22px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+            },
+            animation: {
+              float: 'float 6s ease-in-out infinite',
+              shadowPulse: 'shadowPulse 6s ease-in-out infinite',
+              rise: 'rise .9s cubic-bezier(.2,.7,.2,1) both',
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family: 'Belanosima', system-ui, sans-serif;
+      }
+
+      /* Marca de agua monumental con efecto agua translúcido */
+      .watermark {
+        font-weight: 700;
+        line-height: 0.85;
+        letter-spacing: -0.02em;
+        font-size: clamp(4rem, 21vw, 20rem);
+        white-space: nowrap;
+        user-select: none;
+        pointer-events: none;
+        background: linear-gradient(
+          110deg,
+          rgba(253, 251, 247, 0.16) 0%,
+          rgba(226, 178, 122, 0.07) 35%,
+          rgba(253, 251, 247, 0.18) 60%,
+          rgba(226, 178, 122, 0.06) 100%
+        );
+        background-size: 220% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(253, 251, 247, 0.1);
+        filter: blur(0.4px);
+        animation: shimmer 14s ease-in-out infinite alternate;
+      }
+      @keyframes shimmer {
+        from {
+          background-position: 0% 0;
+        }
+        to {
+          background-position: 100% 0;
+        }
+      }
+
+      /* Botones compactos */
+      .btn-primary {
+        background: #fdfbf7;
+        color: #4a2e1b;
+        transition: transform 0.3s ease, background 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .btn-primary:hover {
+        background: #e2b27a;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.6);
+      }
+      .btn-secondary {
+        border: 1.5px solid rgba(253, 251, 247, 0.6);
+        color: #fdfbf7;
+        transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+      }
+      .btn-secondary:hover {
+        background: #fdfbf7;
+        color: #4a2e1b;
+        transform: translateY(-2px);
+      }
+
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        height: 1.5px;
+        width: 0;
+        background: #e2b27a;
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      /* Contenedor del producto: dimensiones fijas, no se desarma si la imagen falla */
+      .product-box {
+        aspect-ratio: 1 / 1;
+      }
+
+      .d1 {
+        animation-delay: 0.05s;
+      }
+      .d2 {
+        animation-delay: 0.18s;
+      }
+      .d3 {
+        animation-delay: 0.3s;
+      }
+      .d4 {
+        animation-delay: 0.42s;
+      }
+
+      :focus-visible {
+        outline: 2px solid #e2b27a;
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-sand text-cream antialiased overflow-x-hidden font-sans">
+    <!-- ============ HERO ============ -->
+    <section class="p-3 sm:p-5 lg:p-6 min-h-screen flex">
+      <!-- GRAN CAJA PRINCIPAL -->
+      <div
+        class="relative w-full flex flex-col overflow-hidden rounded-3xl bg-espresso shadow-2xl shadow-espresso/30"
+      >
+        <!-- Luces suaves -->
+        <div
+          class="absolute -top-32 -right-24 w-96 h-96 rounded-full bg-toasted/30 blur-3xl"
+        ></div>
+        <div
+          class="absolute -bottom-40 -left-24 w-[28rem] h-[28rem] rounded-full bg-black/25 blur-3xl"
+        ></div>
+
+        <!-- Marca de agua centrada dentro de la caja -->
+        <div
+          class="absolute inset-0 flex items-center justify-center overflow-hidden"
+          aria-hidden="true"
+        >
+          <span class="watermark">DOLCE RISO</span>
+        </div>
+
+        <!-- NAVBAR -->
+        <nav class="relative z-30" aria-label="Navegación principal">
+          <div
+            class="px-5 sm:px-8 lg:px-12 py-5 flex items-center justify-between"
+          >
+            <a
+              href="#"
+              class="flex items-center gap-2.5"
+              aria-label="Dolce Riso, inicio"
+            >
+              <span
+                class="w-10 h-10 rounded-full bg-cream text-espresso grid place-items-center"
+              >
+                <i class="fa-solid fa-bowl-rice text-sm"></i>
+              </span>
+              <span class="text-2xl font-semibold tracking-tight"
+                >Dolce <span class="text-caramel">Riso</span></span
+              >
+            </a>
+
+            <ul class="hidden lg:flex items-center gap-10 text-sm">
+              <li>
+                <a href="#quienes-somos" class="nav-link">Quiénes Somos</a>
+              </li>
+              <li><a href="#formatos" class="nav-link">Formatos</a></li>
+              <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+
+            <div class="flex items-center gap-3">
+              <a
+                href="#pedido"
+                class="btn-primary hidden sm:inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm"
+              >
+                Realizar Pedido <i class="fa-solid fa-arrow-right text-xs"></i>
+              </a>
+              <button
+                id="menuBtn"
+                class="lg:hidden w-11 h-11 rounded-full border border-cream/30 grid place-items-center"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+                aria-controls="mobileMenu"
+              >
+                <i class="fa-solid fa-bars"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Menú móvil -->
+          <div
+            id="mobileMenu"
+            class="hidden lg:hidden mx-5 sm:mx-8 rounded-2xl bg-black/30 backdrop-blur border border-cream/10 p-5"
+          >
+            <ul class="flex flex-col gap-4 text-base">
+              <li>
+                <a href="#quienes-somos" class="block py-1">Quiénes Somos</a>
+              </li>
+              <li><a href="#formatos" class="block py-1">Formatos</a></li>
+              <li><a href="#calidad" class="block py-1">Calidad</a></li>
+              <li><a href="#contacto" class="block py-1">Contacto</a></li>
+              <li>
+                <a
+                  href="#pedido"
+                  class="btn-primary flex justify-center rounded-full px-6 py-3 text-sm"
+                  >Realizar Pedido</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <!-- CONTENIDO: 3 bloques -->
+        <main class="relative z-20 flex-1 flex items-center">
+          <div
+            class="w-full px-5 sm:px-8 lg:px-12 py-10 lg:py-14 grid gap-10 lg:gap-8 items-center lg:grid-cols-[1fr_auto_1fr]"
+          >
+            <!-- IZQUIERDA: badge + titular -->
+            <div class="text-center lg:text-left">
+              <span
+                class="animate-rise d1 inline-flex items-center gap-2 rounded-full border border-caramel/40 bg-cream/5 px-4 py-1.5 text-xs sm:text-sm text-caramel"
+              >
+                <i class="fa-solid fa-wheat-awn"></i> 100% Artesanal &amp;
+                Tradicional
+              </span>
+              <h1
+                class="animate-rise d2 mt-6 font-bold leading-[1.05] tracking-tight text-4xl sm:text-5xl xl:text-6xl"
+              >
+                La Devoción del Arroz con Leche
+                <em class="italic font-semibold text-caramel">Tradicional</em>
+              </h1>
+            </div>
+
+            <!-- CENTRO: producto (centro exacto) -->
+            <div class="relative flex justify-center">
+              <div
+                class="product-box relative w-[15.5rem] sm:w-[21rem] xl:w-[26rem]"
+              >
+                <div
+                  class="absolute inset-0 rounded-full bg-gradient-to-br from-cream/20 to-cream/5 ring-1 ring-cream/20"
+                ></div>
+                <div
+                  class="absolute -inset-4 sm:-inset-6 rounded-full border border-caramel/25"
+                ></div>
+
+                <!-- Sombra -->
+                <div
+                  class="animate-shadowPulse absolute left-1/2 -bottom-5 w-3/5 h-6 rounded-[50%] bg-black blur-xl"
+                ></div>
+
+                <!-- Fallback visible si la imagen no carga -->
+                <div
+                  id="imgFallback"
+                  class="absolute inset-0 hidden place-items-center text-caramel/70 text-center"
+                >
+                  <div>
+                    <i class="fa-solid fa-bowl-rice text-5xl"></i>
+                    <p class="mt-2 text-sm">Dolce Riso</p>
+                  </div>
+                </div>
+
+                <div
+                  class="animate-float absolute inset-[6%] rounded-full overflow-hidden shadow-[0_30px_40px_-15px_rgba(0,0,0,.6)]"
+                >
+                  <img
+                    id="productImg"
+                    src="https://images.unsplash.com/photo-1514944298352-f4d732112d7b?auto=format&fit=crop&w=600&q=80"
+                    alt="Envase de arroz con leche artesanal Dolce Riso"
+                    width="600"
+                    height="600"
+                    class="w-full h-full object-cover"
+                    loading="eager"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- DERECHA: descripción + botones compactos -->
+            <div
+              class="animate-rise d3 text-center lg:text-left lg:max-w-sm lg:justify-self-end"
+            >
+              <p class="text-sm sm:text-base leading-relaxed text-cream/80">
+                Cocción lenta, textura cremosa y solo ingredientes
+                seleccionados: el sabor de siempre, hecho a mano en cada envase.
+              </p>
+              <div
+                class="mt-5 flex flex-col min-[420px]:flex-row lg:flex-row gap-3 justify-center lg:justify-start"
+              >
+                <a
+                  href="#pedido"
+                  class="btn-primary inline-flex items-center justify-center gap-2 rounded-full px-5 py-2 text-xs sm:text-sm"
+                >
+                  <i class="fa-solid fa-cart-shopping text-[.7rem]"></i>
+                  Realizar Pedido
+                </a>
+                <a
+                  href="#formatos"
+                  class="btn-secondary inline-flex items-center justify-center gap-2 rounded-full px-5 py-2 text-xs sm:text-sm"
+                >
+                  Ver Formatos
+                </a>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </section>
+
+    <!-- =========================================================
+     SECCIÓN 2: QUIÉNES SOMOS — DOLCE RISO
+     Tailwind CSS + Glassmorphism + Responsive Design
+========================================================== -->
+
+    <section
+      id="quienes-somos"
+      class="relative overflow-hidden bg-[#FDFBF7] px-5 py-20 sm:px-8 lg:px-16 lg:py-28"
+    >
+      <div class="mx-auto max-w-7xl">
+        <div
+          class="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16"
+        >
+          <!-- ===================================================
+           COLUMNA IZQUIERDA: IDENTIDAD DE MARCA
+      ==================================================== -->
+
+          <div class="lg:col-span-6">
+            <!-- Etiqueta superior -->
+            <div class="mb-6 flex items-center gap-3">
+              <span class="h-px w-10 bg-[#B58A60]"></span>
+              <span
+                class="text-xs font-semibold uppercase tracking-[0.3em] text-[#9A7554]"
+              >
+                Nuestra esencia
+              </span>
+            </div>
+
+            <!-- Título principal -->
+            <h2
+              class="mb-7 font-['Belanosima',sans-serif] text-4xl font-bold leading-tight text-[#593B2C] sm:text-5xl lg:text-6xl"
+            >
+              Quiénes Somos<span class="text-[#C49A6C]">.</span>
+            </h2>
+
+            <!-- Descripción de la marca -->
+            <p
+              class="mb-6 max-w-xl text-base leading-8 text-[#6E5A4B] sm:text-lg"
+            >
+              Somos
+              <strong class="font-semibold text-[#593B2C]">Dolce Riso</strong>,
+              un emprendimiento de Santa Cruz de la Sierra, Bolivia, dedicado a
+              la elaboración y comercialización de arroz con leche artesanal.
+            </p>
+
+            <!-- Propuesta de valor -->
+            <p
+              class="mb-8 max-w-xl text-sm leading-8 text-[#79695C] sm:text-base"
+            >
+              Nuestro objetivo es ofrecer un producto de alta calidad con sabor
+              tradicional e ingredientes seleccionados. Aplicamos una cocción
+              lenta a fuego manso que logra una cremosidad sublime y una textura
+              aterciopelada, brindando una experiencia dulce y especial en cada
+              porción.
+            </p>
+
+            <!-- Firma institucional -->
+            <div class="flex items-center gap-4">
+              <div
+                class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#D9C3AA] bg-white/50 text-[#9A7554] shadow-sm"
+              >
+                <!-- Grano de arroz SVG -->
+                <svg
+                  viewBox="0 0 40 40"
+                  fill="none"
+                  class="h-7 w-7"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M10 29C7 21 13 10 28 7C31 20 24 30 10 29Z"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M11 28C16 22 21 16 27 9"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+
+              <div>
+                <p
+                  class="font-['Belanosima',sans-serif] text-lg text-[#593B2C]"
+                >
+                  Hecho con dedicación
+                </p>
+                <p class="text-sm leading-6 text-[#9A8573]">
+                  Tradición, calidad y dulzura en cada cucharada.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===================================================
+           COLUMNA DERECHA: TARJETAS BENTO GLASSMORPHISM
+      ==================================================== -->
+
+          <div class="lg:col-span-6">
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <!-- ===============================================
+               TARJETA 01: 100% ARTESANAL
+          ================================================ -->
+
+              <article
+                class="group relative isolate flex min-h-[250px] flex-col justify-between overflow-hidden rounded-3xl border border-white/80 bg-[#F1E5D5]/75 p-6 shadow-[0_8px_30px_rgba(121,84,58,0.07)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-white hover:bg-[#F1E5D5]/90 hover:shadow-[0_16px_40px_rgba(121,84,58,0.14)] sm:p-7"
+              >
+                <!-- Fondo de cristal y reflejo cálido -->
+                <div
+                  aria-hidden="true"
+                  class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-white/60 via-transparent to-[#D8B895]/20"
+                ></div>
+
+                <!-- Reflejo superior -->
+                <div
+                  aria-hidden="true"
+                  class="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent"
+                ></div>
+
+                <!-- Número decorativo -->
+                <span
+                  aria-hidden="true"
+                  class="pointer-events-none absolute right-3 top-3 z-0 select-none rounded-2xl border border-white/30 bg-white/20 px-3 py-1 font-['Belanosima',sans-serif] text-6xl leading-none text-[#8B684B]/20 backdrop-blur-xl sm:text-7xl"
+                >
+                  01
+                </span>
+
+                <!-- Icono de grano de arroz -->
+                <div
+                  class="relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/70 bg-white/45 text-[#79543A] shadow-sm backdrop-blur-lg transition-transform duration-300 group-hover:scale-105"
+                >
+                  <svg
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    class="h-7 w-7"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M10 29C7 21 13 10 28 7C31 20 24 30 10 29Z"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M11 28C16 22 21 16 27 9"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+
+                <!-- Contenido -->
+                <div class="relative z-10 mt-8">
+                  <span
+                    class="mb-2 block text-[10px] font-semibold uppercase tracking-[0.2em] text-[#A17B56]"
+                  >
+                    01 / Elaboración
+                  </span>
+
+                  <h3
+                    class="mb-2 font-['Belanosima',sans-serif] text-2xl text-[#593B2C]"
+                  >
+                    100% Artesanal
+                  </h3>
+
+                  <p class="max-w-[260px] text-sm leading-6 text-[#796452]">
+                    Elaboración diaria en pequeños lotes sin conservantes.
+                  </p>
+                </div>
+              </article>
+
+              <!-- ===============================================
+               TARJETA 02: SABOR TRADICIONAL
+          ================================================ -->
+
+              <article
+                class="group relative isolate flex min-h-[250px] flex-col justify-between overflow-hidden rounded-3xl border border-white/80 bg-[#E8D3BA]/75 p-6 shadow-[0_8px_30px_rgba(121,84,58,0.07)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-white hover:bg-[#E8D3BA]/90 hover:shadow-[0_16px_40px_rgba(121,84,58,0.14)] sm:p-7"
+              >
+                <div
+                  aria-hidden="true"
+                  class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-white/55 via-transparent to-[#C49A6C]/20"
+                ></div>
+
+                <div
+                  aria-hidden="true"
+                  class="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent"
+                ></div>
+
+                <span
+                  aria-hidden="true"
+                  class="pointer-events-none absolute right-3 top-3 z-0 select-none rounded-2xl border border-white/30 bg-white/20 px-3 py-1 font-['Belanosima',sans-serif] text-6xl leading-none text-[#916A48]/20 backdrop-blur-xl sm:text-7xl"
+                >
+                  02
+                </span>
+
+                <!-- Icono de grano de arroz -->
+                <div
+                  class="relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/70 bg-white/45 text-[#79543A] shadow-sm backdrop-blur-lg transition-transform duration-300 group-hover:scale-105"
+                >
+                  <svg
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    class="h-7 w-7"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M10 29C7 21 13 10 28 7C31 20 24 30 10 29Z"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M11 28C16 22 21 16 27 9"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+
+                <div class="relative z-10 mt-8">
+                  <span
+                    class="mb-2 block text-[10px] font-semibold uppercase tracking-[0.2em] text-[#916A48]"
+                  >
+                    02 / Receta
+                  </span>
+
+                  <h3
+                    class="mb-2 font-['Belanosima',sans-serif] text-2xl text-[#593B2C]"
+                  >
+                    Sabor Tradicional
+                  </h3>
+
+                  <p class="max-w-[260px] text-sm leading-6 text-[#745842]">
+                    La receta de antaño con canela pura de Ceilán.
+                  </p>
+                </div>
+              </article>
+
+              <!-- ===============================================
+               TARJETA 03: LECHE DE GRANJA
+          ================================================ -->
+
+              <article
+                class="group relative isolate flex min-h-[250px] flex-col justify-between overflow-hidden rounded-3xl border border-white/85 bg-[#E9E8DA]/80 p-6 shadow-[0_8px_30px_rgba(104,112,76,0.07)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-white hover:bg-[#E9E8DA]/95 hover:shadow-[0_16px_40px_rgba(104,112,76,0.14)] sm:p-7"
+              >
+                <div
+                  aria-hidden="true"
+                  class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-white/65 via-transparent to-[#B9B99A]/20"
+                ></div>
+
+                <div
+                  aria-hidden="true"
+                  class="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent"
+                ></div>
+
+                <span
+                  aria-hidden="true"
+                  class="pointer-events-none absolute right-3 top-3 z-0 select-none rounded-2xl border border-white/40 bg-white/25 px-3 py-1 font-['Belanosima',sans-serif] text-6xl leading-none text-[#68704C]/20 backdrop-blur-xl sm:text-7xl"
+                >
+                  03
+                </span>
+
+                <!-- Icono de grano de arroz -->
+                <div
+                  class="relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/75 bg-white/50 text-[#68704C] shadow-sm backdrop-blur-lg transition-transform duration-300 group-hover:scale-105"
+                >
+                  <svg
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    class="h-7 w-7"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M10 29C7 21 13 10 28 7C31 20 24 30 10 29Z"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M11 28C16 22 21 16 27 9"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+
+                <div class="relative z-10 mt-8">
+                  <span
+                    class="mb-2 block text-[10px] font-semibold uppercase tracking-[0.2em] text-[#777C5D]"
+                  >
+                    03 / Ingredientes
+                  </span>
+
+                  <h3
+                    class="mb-2 font-['Belanosima',sans-serif] text-2xl text-[#4D5039]"
+                  >
+                    Leche de Granja
+                  </h3>
+
+                  <p class="max-w-[260px] text-sm leading-6 text-[#696B55]">
+                    Ingredientes frescos seleccionados de productores locales.
+                  </p>
+                </div>
+              </article>
+
+              <!-- ===============================================
+               TARJETA 04: CALIDAD Y CALIDEZ
+          ================================================ -->
+
+              <article
+                class="group relative isolate flex min-h-[250px] flex-col justify-between overflow-hidden rounded-3xl border border-white/20 bg-[#684A39]/95 p-6 shadow-[0_8px_30px_rgba(75,48,33,0.15)] backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-white/40 hover:bg-[#684A39] hover:shadow-[0_16px_40px_rgba(75,48,33,0.25)] sm:p-7"
+              >
+                <div
+                  aria-hidden="true"
+                  class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-[#D9B99A]/20 via-transparent to-[#38251D]/25"
+                ></div>
+
+                <div
+                  aria-hidden="true"
+                  class="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent"
+                ></div>
+
+                <span
+                  aria-hidden="true"
+                  class="pointer-events-none absolute right-3 top-3 z-0 select-none rounded-2xl border border-white/15 bg-white/10 px-3 py-1 font-['Belanosima',sans-serif] text-6xl leading-none text-[#F0D7B8]/25 backdrop-blur-xl sm:text-7xl"
+                >
+                  04
+                </span>
+
+                <!-- Icono de grano de arroz -->
+                <div
+                  class="relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/25 bg-white/10 text-[#F0D7B8] shadow-sm backdrop-blur-lg transition-transform duration-300 group-hover:scale-105"
+                >
+                  <svg
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    class="h-7 w-7"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M10 29C7 21 13 10 28 7C31 20 24 30 10 29Z"
+                      stroke="currentColor"
+                      stroke-width="1.7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M11 28C16 22 21 16 27 9"
+                      stroke="currentColor"
+                      stroke-width="1.4"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+
+                <div class="relative z-10 mt-8">
+                  <span
+                    class="mb-2 block text-[10px] font-semibold uppercase tracking-[0.2em] text-[#D8B895]"
+                  >
+                    04 / Experiencia
+                  </span>
+
+                  <h3
+                    class="mb-2 font-['Belanosima',sans-serif] text-2xl text-[#FFF8EF]"
+                  >
+                    Calidad y Calidez
+                  </h3>
+
+                  <p class="max-w-[260px] text-sm leading-6 text-[#E5D4C3]">
+                    Presentaciones cuidadas para endulzar tus mejores momentos.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+     TIPOGRAFÍA: BELANOSIMA
+     Agregar dentro del <head> si aún no está cargada.
+========================================================== -->
+    <!--
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&display=swap"
+  rel="stylesheet">-->
+    <!--fin de la seccion 2-->
+    <!-- ============ SECCIÓN 3: FORMATOS (v2) ============
+     Pegar debajo de la sección "Quiénes Somos", dentro del <body>.
+     Requiere Tailwind CDN (v3.2 o superior), Belanosima y FontAwesome, como en tu index.html.
+     Los colores van en valores directos, sin depender de la configuración de Tailwind. -->
+
+    <style>
+      /* Granitos de arroz cayendo (decorativos, detrás del cristal) */
+      @keyframes grainFall {
+        0% {
+          transform: translateY(-20px) rotate(var(--r, 20deg));
+          opacity: 0;
+        }
+        15% {
+          opacity: 0.9;
+        }
+        85% {
+          opacity: 0.9;
+        }
+        100% {
+          transform: translateY(70px) rotate(calc(var(--r, 20deg) + 80deg));
+          opacity: 0;
+        }
+      }
+      .grain {
+        animation: grainFall var(--d, 5s) ease-in infinite;
+        animation-delay: var(--t, 0s);
+      }
+      @keyframes productFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .product-float {
+        animation: productFloat 6s ease-in-out infinite;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .grain,
+        .product-float {
+          animation: none !important;
+        }
+      }
+    </style>
+
+    <section
+      id="formatos"
+      class="relative overflow-hidden py-20 sm:py-28 px-5 sm:px-8 bg-gradient-to-b from-[#F3E8D8] via-[#EFE0CB] to-[#E8D5BC]"
+      style="font-family: 'Belanosima', system-ui, sans-serif"
+    >
+      <!-- Símbolo reutilizable del grano de arroz -->
+      <svg width="0" height="0" class="absolute" aria-hidden="true">
+        <symbol id="rice-grain" viewBox="0 0 24 12">
+          <ellipse
+            cx="12"
+            cy="6"
+            rx="10.5"
+            ry="4.6"
+            fill="#FFFaf0"
+            stroke="#B88A5A"
+            stroke-width="1"
+          />
+          <path
+            d="M4 6.2c5-1.6 11-1.6 16 0"
+            stroke="#D8BE9B"
+            stroke-width=".8"
+            fill="none"
+            stroke-linecap="round"
+          />
+        </symbol>
+      </svg>
+
+      <div class="relative max-w-7xl mx-auto">
+        <!-- Encabezado -->
+        <div class="text-center max-w-2xl mx-auto">
+          <span
+            class="inline-flex items-center gap-2 rounded-full border border-[#8B5A2B]/30 bg-white/40 px-4 py-1.5 text-xs sm:text-sm text-[#8B5A2B]"
+          >
+            <i class="fa-solid fa-bowl-rice"></i> Tres tamaños, una misma receta
+          </span>
+          <h2
+            class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#4A2E1B]"
+          >
+            Nuestros <span class="text-[#8B5A2B]">Formatos</span>
+          </h2>
+        </div>
+
+        <!-- Grid de 3 tarjetas -->
+        <div
+          class="mt-16 sm:mt-24 grid gap-14 md:gap-8 md:grid-cols-3 items-stretch max-w-md md:max-w-none mx-auto"
+        >
+          <!-- ========== TARJETA 1: 200 ml ========== -->
+          <div
+            class="group relative transition-transform duration-500 hover:-translate-y-2"
+          >
+            <!-- Granitos detrás del cristal -->
+            <div
+              class="absolute inset-x-0 top-0 h-3/5 pointer-events-none"
+              aria-hidden="true"
+            >
+              <svg
+                class="grain absolute w-7 -left-3 top-[6%]"
+                style="--r: 15deg; --d: 5s; --t: 0s"
+                viewBox="0 0 24 12"
+              >
+                <use href="#rice-grain" />
+              </svg>
+              <svg
+                class="grain absolute w-6 right-[4%] top-[12%]"
+                style="--r: -30deg; --d: 6s; --t: 1.4s"
+                viewBox="0 0 24 12"
+              >
+                <use href="#rice-grain" />
+              </svg>
+              <svg
+                class="grain absolute w-5 left-[38%] top-0"
+                style="--r: 50deg; --d: 4.6s; --t: 2.6s"
+                viewBox="0 0 24 12"
+              >
+                <use href="#rice-grain" />
+              </svg>
+            </div>
+
+            <!-- Tarjeta cristal -->
+            <article
+              class="relative z-10 h-full flex flex-col rounded-3xl bg-white/25 backdrop-blur-[3px] border border-white/60 p-6 sm:p-7 shadow-[0_20px_50px_-25px_rgba(74,46,27,.45)] transition-shadow duration-500 group-hover:shadow-[0_30px_60px_-25px_rgba(74,46,27,.55)]"
+            >
+              <div
+                class="relative mx-auto w-full max-w-[17rem] aspect-square flex items-center justify-center"
+              >
+                <div
+                  class="absolute inset-4 rounded-full bg-gradient-to-br from-[#A9713A] via-[#8B5A2B] to-[#6B4226] blur-3xl opacity-55 transition-opacity duration-500 group-hover:opacity-75"
+                ></div>
+                <div
+                  class="absolute inset-0 grid place-items-center text-[#8B5A2B]/40"
+                >
+                  <i class="fa-solid fa-jar text-6xl"></i>
+                </div>
+                <img
+                  src="img/dolce-riso-200ml.png"
+                  alt="Dolce Riso arroz con leche 200 ml"
+                  width="400"
+                  height="400"
+                  loading="lazy"
+                  onerror="this.classList.add('hidden')"
+                  class="product-float relative z-10 w-[78%] h-[78%] object-contain drop-shadow-[0_22px_22px_rgba(74,46,27,.4)] transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+
+              <div class="mt-6 text-center flex-1 flex flex-col items-center">
+                <span
+                  class="inline-block rounded-full bg-white/50 px-3 py-1 text-xs text-[#8B5A2B]"
+                  >Individual</span
+                >
+                <h3 class="mt-3 text-3xl font-bold text-[#4A2E1B]">200 ml</h3>
+                <p class="mt-2 text-3xl font-semibold text-[#8B5A2B]">13 Bs</p>
+
+                <a
+                  href="#pedido"
+                  aria-label="Pedir 200 ml"
+                  class="group/btn relative mt-6 inline-flex items-center overflow-hidden rounded-full bg-[#4A2E1B] pl-7 pr-14 py-3 text-sm sm:text-base text-[#FDFBF7] shadow-md shadow-[#4A2E1B]/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#4A2E1B]/40 active:scale-95 active:translate-y-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B5A2B]"
+                >
+                  <span
+                    class="absolute right-1.5 top-1/2 -translate-y-1/2 size-9 rounded-full bg-[#F3E8D8] transition-transform duration-700 ease-[cubic-bezier(.65,0,.35,1)] group-hover/btn:scale-[14]"
+                  ></span>
+                  <span
+                    class="relative z-10 transition-colors duration-500 group-hover/btn:text-[#4A2E1B]"
+                    >Pedir</span
+                  >
+                  <i
+                    class="fa-solid fa-arrow-right absolute right-[1.15rem] top-1/2 -translate-y-1/2 z-10 text-sm text-[#4A2E1B] transition-transform duration-500 group-hover/btn:translate-x-1"
+                  ></i>
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <!-- ========== TARJETA 2: 500 ml (destacada) ========== -->
+          <div
+            class="group relative transition-transform duration-500 hover:-translate-y-2 md:-translate-y-4 md:hover:-translate-y-6"
+          >
+            <div
+              class="absolute inset-x-0 top-0 h-3/5 pointer-events-none"
+              aria-hidden="true"
+            >
+              <svg
+                class="grain absolute w-7 -left-3 top-[10%]"
+                style="--r: -20deg; --d: 5.4s; --t: 0.6s"
+                viewBox="0 0 24 12"
+              >
+                <use href="#rice-grain" />
+              </svg>
+              <svg
+                class="grain absolute w-6 -right-3 top-[4%]"
+                style="--r: 35deg; --d: 4.8s; --t: 2s"
+                viewBox="0 0 24 12"
+              >
+                <use href="#rice-grain" />
+              </svg>
+              <svg
+                class="grain absolute w-5 right-[30%] top-0"
+                style="--r: -55deg; --d: 6.2s; --t: 3.2s"
+                viewBox="0 0 24 12"
+              >
+                <use href="#rice-grain" />
+              </svg>
+            </div>
+
+            <article
+              class="relative z-10 h-full flex flex-col rounded-3xl bg-white/30 backdrop-blur-[3px] border-2 border-[#8B5A2B]/40 p-6 sm:p-7 shadow-[0_30px_60px_-28px_rgba(74,46,27,.55)]"
+            >
+              <span
+                class="absolute -top-4 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[#4A2E1B] px-4 py-1.5 text-xs sm:text-sm text-[#E2B27A] shadow-lg"
+              >
+                <i class="fa-solid fa-star text-[.7rem]"></i> El Más Popular
+              </span>
+
+              <div
+                class="relative mx-auto w-full max-w-[19rem] aspect-square flex items-center justify-center mt-2"
+              >
+                <div
+                  class="absolute inset-3 rounded-full bg-gradient-to-br from-[#A9713A] via-[#8B5A2B] to-[#6B4226] blur-3xl opacity-65 transition-opacity duration-500 group-hover:opacity-85"
+                ></div>
+                <div
+                  class="absolute inset-0 grid place-items-center text-[#8B5A2B]/40"
+                >
+                  <i class="fa-solid fa-jar text-7xl"></i>
+                </div>
+                <img
+                  src="img/dolce-riso-500ml.png"
+                  alt="Dolce Riso arroz con leche 500 ml"
+                  width="400"
+                  height="400"
+                  loading="lazy"
+                  onerror="this.classList.add('hidden')"
+                  class="product-float relative z-10 w-[82%] h-[82%] object-contain drop-shadow-[0_24px_24px_rgba(74,46,27,.45)] transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+
+              <div class="mt-6 text-center flex-1 flex flex-col items-center">
+                <span
+                  class="inline-block rounded-full bg-white/50 px-3 py-1 text-xs text-[#8B5A2B]"
+                  >Dúo</span
+                >
+                <h3 class="mt-3 text-3xl font-bold text-[#4A2E1B]">500 ml</h3>
+                <p class="mt-2 text-3xl font-semibold text-[#8B5A2B]">21 Bs</p>
+
+                <a
+                  href="#pedido"
+                  aria-label="Pedir 500 ml"
+                  class="group/btn relative mt-6 inline-flex items-center overflow-hidden rounded-full bg-[#8B5A2B] pl-7 pr-14 py-3 text-sm sm:text-base text-[#FDFBF7] shadow-md shadow-[#8B5A2B]/35 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#8B5A2B]/45 active:scale-95 active:translate-y-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4A2E1B]"
+                >
+                  <span
+                    class="absolute right-1.5 top-1/2 -translate-y-1/2 size-9 rounded-full bg-[#F3E8D8] transition-transform duration-700 ease-[cubic-bezier(.65,0,.35,1)] group-hover/btn:scale-[14]"
+                  ></span>
+                  <span
+                    class="relative z-10 transition-colors duration-500 group-hover/btn:text-[#4A2E1B]"
+                    >Pedir</span
+                  >
+                  <i
+                    class="fa-solid fa-arrow-right absolute right-[1.15rem] top-1/2 -translate-y-1/2 z-10 text-sm text-[#4A2E1B] transition-transform duration-500 group-hover/btn:translate-x-1"
+                  ></i>
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <!-- ========== TARJETA 3: 1 Litro ========== -->
+          <div
+            class="group relative transition-transform duration-500 hover:-translate-y-2"
+          >
+            <div
+              class="absolute inset-x-0 top-0 h-3/5 pointer-events-none"
+              aria-hidden="true"
+            >
+              <svg
+                class="grain absolute w-6 -left-3 top-[14%]"
+                style="--r: 40deg; --d: 5.8s; --t: 1s"
+                viewBox="0 0 24 12"
+              >
+                <use href="#rice-grain" />
+              </svg>
+              <svg
+                class="grain absolute w-7 right-[2%] top-[8%]"
+                style="--r: -10deg; --d: 4.9s; --t: 0.2s"
+                viewBox="0 0 24 12"
+              >
+                <use href="#rice-grain" />
+              </svg>
+              <svg
+                class="grain absolute w-5 left-[42%] top-0"
+                style="--r: -45deg; --d: 6.4s; --t: 2.8s"
+                viewBox="0 0 24 12"
+              >
+                <use href="#rice-grain" />
+              </svg>
+            </div>
+
+            <article
+              class="relative z-10 h-full flex flex-col rounded-3xl bg-white/25 backdrop-blur-[3px] border border-white/60 p-6 sm:p-7 shadow-[0_20px_50px_-25px_rgba(74,46,27,.45)] transition-shadow duration-500 group-hover:shadow-[0_30px_60px_-25px_rgba(74,46,27,.55)]"
+            >
+              <div
+                class="relative mx-auto w-full max-w-[17rem] aspect-square flex items-center justify-center"
+              >
+                <div
+                  class="absolute inset-4 rounded-full bg-gradient-to-br from-[#A9713A] via-[#8B5A2B] to-[#6B4226] blur-3xl opacity-55 transition-opacity duration-500 group-hover:opacity-75"
+                ></div>
+                <div
+                  class="absolute inset-0 grid place-items-center text-[#8B5A2B]/40"
+                >
+                  <i class="fa-solid fa-jar text-6xl"></i>
+                </div>
+                <img
+                  src="img/dolce-riso-1l.png"
+                  alt="Dolce Riso arroz con leche 1 litro"
+                  width="400"
+                  height="400"
+                  loading="lazy"
+                  onerror="this.classList.add('hidden')"
+                  class="product-float relative z-10 w-[78%] h-[78%] object-contain drop-shadow-[0_22px_22px_rgba(74,46,27,.4)] transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+
+              <div class="mt-6 text-center flex-1 flex flex-col items-center">
+                <span
+                  class="inline-block rounded-full bg-white/50 px-3 py-1 text-xs text-[#8B5A2B]"
+                  >Familiar</span
+                >
+                <h3 class="mt-3 text-3xl font-bold text-[#4A2E1B]">1 Litro</h3>
+                <p class="mt-2 text-3xl font-semibold text-[#8B5A2B]">26 Bs</p>
+
+                <a
+                  href="#pedido"
+                  aria-label="Pedir 1 Litro"
+                  class="group/btn relative mt-6 inline-flex items-center overflow-hidden rounded-full bg-[#4A2E1B] pl-7 pr-14 py-3 text-sm sm:text-base text-[#FDFBF7] shadow-md shadow-[#4A2E1B]/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#4A2E1B]/40 active:scale-95 active:translate-y-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8B5A2B]"
+                >
+                  <span
+                    class="absolute right-1.5 top-1/2 -translate-y-1/2 size-9 rounded-full bg-[#F3E8D8] transition-transform duration-700 ease-[cubic-bezier(.65,0,.35,1)] group-hover/btn:scale-[14]"
+                  ></span>
+                  <span
+                    class="relative z-10 transition-colors duration-500 group-hover/btn:text-[#4A2E1B]"
+                    >Pedir</span
+                  >
+                  <i
+                    class="fa-solid fa-arrow-right absolute right-[1.15rem] top-1/2 -translate-y-1/2 z-10 text-sm text-[#4A2E1B] transition-transform duration-500 group-hover/btn:translate-x-1"
+                  ></i>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--seccion 3-->
+    <!--Seccion4-->
+
+    <!-- SECCIÓN 4: CONTACTO Y FORMULARIO DE PEDIDO -->
+    <section
+      id="contacto"
+      class="bg-[#FDFBF7] px-4 py-8 sm:px-6 lg:px-10 lg:py-12"
+    >
+      <div
+        class="dolce-riso-contact relative isolate mx-auto w-full max-w-[1525px] overflow-hidden rounded-3xl bg-[#E9DFD2] bg-cover bg-center bg-no-repeat"
+      >
+        <!--
+    FONDO PERSONALIZABLE:
+    Guarda tu imagen de 1525 x 688 px en:
+    ./assets/fondo-dolce-riso.jpg
+
+    Luego descomenta la línea de background-image:
+
+    style="background-image: url('./assets/fondo-dolce-riso.jpg');"
+  -->
+
+        <!-- Capa de contraste opcional para la imagen de fondo -->
+        <div
+          class="pointer-events-none absolute inset-0 -z-10 bg-[#F5EBDD]/20"
+          aria-hidden="true"
+        ></div>
+
+        <!--
+    DISTRIBUCIÓN:
+    Izquierda: información emocional.
+    Centro: completamente vacío.
+    Derecha: formulario.
+  -->
+        <div
+          class="grid min-h-[460px] grid-cols-1 items-center gap-8 px-5 py-8 sm:px-8 sm:py-10 lg:min-h-[500px] lg:grid-cols-3 lg:gap-6 lg:px-12 lg:py-10 xl:px-16"
+        >
+          <!-- TARJETA IZQUIERDA -->
+          <div class="flex items-center lg:col-span-1">
+            <div
+              class="w-full max-w-md rounded-3xl border border-white/35 bg-[#5A4032]/25 p-6 shadow-lg backdrop-blur-md backdrop-saturate-125 sm:p-8"
+            >
+              <span
+                class="mb-5 block text-xs font-bold uppercase tracking-[0.24em] text-[#684A39]"
+              >
+                Un dulce momento
+              </span>
+
+              <h2
+                class="mb-5 font-['Belanosima',sans-serif] text-4xl leading-[1.08] text-[#4D3528] sm:text-5xl"
+              >
+                Un poquito de dulzura para ti.
+              </h2>
+
+              <p class="text-sm leading-7 text-[#4D3528]/90 sm:text-base">
+                Disfruta el sabor tradicional del arroz con leche artesanal,
+                elaborado con dedicación e ingredientes seleccionados para
+                endulzar tus momentos especiales.
+              </p>
+
+              <div class="mt-7">
+                <span
+                  class="block h-px w-12 bg-[#684A39]/60"
+                  aria-hidden="true"
+                ></span>
+
+                <p
+                  class="mt-4 font-['Belanosima',sans-serif] text-lg text-[#4D3528]"
+                >
+                  Hecho con cariño, para compartir.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!--
+      CENTRO VACÍO:
+      No agregar imágenes, tarjetas, textos ni etiquetas.
+      Esta columna reserva espacio para la composición visual.
+    -->
+          <div
+            class="hidden min-h-[300px] lg:col-span-1 lg:block"
+            aria-hidden="true"
+          ></div>
+
+          <!-- FORMULARIO DERECHA -->
+          <div class="flex items-center lg:col-span-1">
+            <form id="formulario-pedido" class="w-full space-y-4">
+              <!-- Campo 1: Nombre completo -->
+              <div>
+                <label for="nombre-pedido" class="sr-only">
+                  Nombre completo
+                </label>
+
+                <input
+                  id="nombre-pedido"
+                  name="nombre"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="¿Cómo te llamas?"
+                  required
+                  class="w-full rounded-2xl border border-white/80 bg-white px-5 py-4 text-sm text-[#4D3528] shadow-sm outline-none transition duration-300 placeholder:text-[#8C7B6D] focus:border-[#684A39] focus:ring-2 focus:ring-[#684A39]/20"
+                />
+              </div>
+
+              <!-- Campo 2: Presentación -->
+              <div>
+                <label for="presentacion-pedido" class="sr-only">
+                  Elige tu presentación
+                </label>
+
+                <select
+                  id="presentacion-pedido"
+                  name="presentacion"
+                  required
+                  class="w-full appearance-none rounded-2xl border border-white/80 bg-white px-5 py-4 text-sm text-[#684A39] shadow-sm outline-none transition duration-300 focus:border-[#684A39] focus:ring-2 focus:ring-[#684A39]/20"
+                >
+                  <option value="" disabled selected>
+                    Elige tu presentación
+                  </option>
+                  <option value="200 ml">200 ml</option>
+                  <option value="500 ml">500 ml</option>
+                  <option value="1 litro">1 litro</option>
+                </select>
+              </div>
+
+              <!-- Campo 3: Notas adicionales -->
+              <div>
+                <label for="notas-pedido" class="sr-only">
+                  Notas adicionales
+                </label>
+
+                <textarea
+                  id="notas-pedido"
+                  name="notas"
+                  rows="3"
+                  placeholder="Notas adicionales"
+                  class="w-full resize-y rounded-2xl border border-white/80 bg-white px-5 py-4 text-sm text-[#4D3528] shadow-sm outline-none transition duration-300 placeholder:text-[#8C7B6D] focus:border-[#684A39] focus:ring-2 focus:ring-[#684A39]/20"
+                ></textarea>
+              </div>
+
+              <!-- BOTÓN TRANSPARENTE CON HOVER CAFÉ -->
+              <button
+                type="submit"
+                class="group inline-flex w-full items-center justify-center gap-3 rounded-full border border-[#684A39]/65 bg-transparent px-6 py-4 font-['Belanosima',sans-serif] text-lg text-[#684A39] transition-all duration-300 ease-out hover:border-[#684A39] hover:bg-[#684A39] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#684A39] focus-visible:ring-offset-2 active:scale-[0.98]"
+              >
+                <span>Pedir</span>
+
+                <svg
+                  class="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--seccion4-->
+
+    <script>
+      // Menú móvil
+      const btn = document.getElementById('menuBtn');
+      const menu = document.getElementById('mobileMenu');
+      const setIcon = (open) =>
+        (btn.innerHTML = open
+          ? '<i class="fa-solid fa-xmark"></i>'
+          : '<i class="fa-solid fa-bars"></i>');
+      btn.addEventListener('click', () => {
+        const open = menu.classList.toggle('hidden') === false;
+        btn.setAttribute('aria-expanded', open);
+        setIcon(open);
+      });
+      menu.querySelectorAll('a').forEach((a) =>
+        a.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          btn.setAttribute('aria-expanded', 'false');
+          setIcon(false);
+        })
+      );
+
+      // Imagen: Unsplash -> ruta local -> fallback visual (el contenedor nunca cambia de tamaño)
+      const img = document.getElementById('productImg');
+      const fb = document.getElementById('imgFallback');
+      let step = 0;
+      img.addEventListener('error', () => {
+        if (step === 0) {
+          step = 1;
+          img.src = 'aroz200crea.png';
+        } else {
+          img.classList.add('hidden');
+          fb.classList.remove('hidden');
+          fb.classList.add('grid');
+        }
+      });
+      img.addEventListener('load', () => {
+        // El PNG sin fondo se muestra completo; la foto de prueba rellena el círculo
+        if (img.src.includes('aroz200crea.png')) {
+          img.classList.replace('object-cover', 'object-contain');
+        }
+      });
+    </script>
+  </body>
+</html>
