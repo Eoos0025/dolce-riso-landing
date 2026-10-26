@@ -180,6 +180,235 @@
           transition: none !important;
         }
       }
+
+      :root {
+        --bg-dark: #3D2616;
+        --accent-gold: #D4A373;
+        --text-light: #FDFBF7;
+        --glass-bg: rgba(61, 38, 22, 0.4);
+        --glass-border: rgba(255, 255, 255, 0.15);
+        --glass-card: rgba(212, 163, 115, 0.15);
+      }
+
+      body {
+        background: var(--bg-dark);
+        color: var(--text-light);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      h1, h2, h3, .font-display {
+        font-family: "Belanosima", ui-rounded, system-ui, sans-serif;
+        letter-spacing: -0.025em;
+      }
+
+      /* Hero: marca de agua siempre contenida en el viewport */
+      .watermark {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding-inline: clamp(0.35rem, 2.2vw, 2rem);
+        text-align: center;
+        white-space: nowrap;
+        font-size: clamp(2.4rem, 13vw, 12rem);
+        line-height: 0.98;
+        letter-spacing: -0.045em;
+        transform: none;
+        filter: blur(0.15px);
+      }
+
+      /* Producto hero: más grande que el círculo, sin estirar el envase */
+      .hero-product-image {
+        position: absolute;
+        inset: -10%;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: visible;
+        animation: float 6s ease-in-out infinite;
+      }
+      #productImg {
+        display: block;
+        width: 128%;
+        max-width: none;
+        height: auto;
+        max-height: 128%;
+        object-fit: contain;
+        filter: drop-shadow(0 22px 24px rgba(20, 10, 3, 0.46));
+      }
+
+      /* Sección de esencia: fondo cacao + tarjetas de vidrio esmerilado */
+      #quienes-somos {
+        background:
+          radial-gradient(ellipse at 88% 18%, rgba(212,163,115,.16), transparent 35%),
+          radial-gradient(ellipse at 8% 90%, rgba(139,90,43,.16), transparent 38%),
+          var(--bg-dark);
+        color: var(--text-light);
+      }
+      #quienes-somos .essence-card {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.15);
+        border-radius: 16px;
+        background: rgba(255,255,255,.08);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 18px 40px rgba(20,10,3,.13);
+        transition: transform .3s ease, border-color .3s ease, background .3s ease;
+      }
+      #quienes-somos .essence-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.34), transparent);
+        pointer-events: none;
+      }
+      #quienes-somos .essence-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(212,163,115,.48);
+        background: rgba(255,255,255,.11);
+      }
+      #quienes-somos > div > div > div:first-child h2,
+      #quienes-somos > div > div > div:first-child p,
+      #quienes-somos > div > div > div:first-child strong,
+      #quienes-somos .essence-card h3 {
+        color: var(--text-light) !important;
+      }
+      #quienes-somos > div > div > div:first-child p:not(:last-child) {
+        color: rgba(253,251,247,.78) !important;
+      }
+      #quienes-somos .essence-card p {
+        color: rgba(253,251,247,.78) !important;
+      }
+      #quienes-somos .essence-card span:not([aria-hidden="true"]) {
+        color: var(--accent-gold) !important;
+      }
+      #quienes-somos .essence-card [aria-hidden="true"] {
+        color: rgba(212,163,115,.26) !important;
+      }
+      #quienes-somos .essence-card svg {
+        color: var(--accent-gold);
+      }
+      #quienes-somos > div > div > div:first-child .text-xs {
+        color: var(--accent-gold) !important;
+      }
+      #quienes-somos > div > div > div:first-child .text-sm {
+        color: rgba(253,251,247,.7) !important;
+      }
+
+      /* Catálogo: envases protagonistas dentro de tarjetas cálidas traslúcidas */
+      #formatos {
+        background:
+          radial-gradient(ellipse at 50% 0%, rgba(212,163,115,.16), transparent 38%),
+          var(--bg-dark);
+      }
+      #formatos h2 { color: var(--text-light) !important; }
+      #formatos h2 span { color: var(--accent-gold) !important; }
+      #formatos > div > div:first-child > span {
+        background: rgba(255,255,255,.07) !important;
+        border-color: rgba(255,255,255,.18) !important;
+        color: var(--accent-gold) !important;
+      }
+      #formatos .format-card {
+        min-width: 0;
+        border: 1px solid rgba(255,255,255,.17);
+        border-radius: 24px;
+        background: rgba(212,163,115,.15);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 24px 55px rgba(15,8,3,.2);
+        transition: transform .35s ease, border-color .35s ease, background .35s ease;
+      }
+      #formatos .format-card:hover {
+        border-color: rgba(212,163,115,.58);
+        background: rgba(212,163,115,.2);
+      }
+      #formatos .format-card img {
+        width: 96%;
+        height: 96%;
+        max-width: none;
+        object-fit: contain;
+        filter: drop-shadow(0px 15px 20px rgba(74, 51, 25, 0.35));
+      }
+      #formatos .format-card .product-image-stage {
+        width: 100%;
+        max-width: 22rem;
+        margin-inline: auto;
+      }
+      #formatos .format-card h3 { color: var(--text-light) !important; }
+      #formatos .format-card p { color: var(--accent-gold) !important; }
+      #formatos .format-card article > div > span {
+        background: rgba(253,251,247,.12) !important;
+        color: var(--text-light) !important;
+        border: 1px solid rgba(255,255,255,.12);
+      }
+      #formatos .format-card a[aria-label^="Pedir"] {
+        background: var(--accent-gold) !important;
+        color: var(--bg-dark) !important;
+      }
+      #formatos .format-card a[aria-label^="Pedir"] > span:first-child {
+        background: var(--text-light) !important;
+      }
+      #formatos .format-card a[aria-label^="Pedir"] i {
+        color: var(--bg-dark) !important;
+      }
+
+      /* Contacto: panel y formulario con contraste sobre la fotografía */
+      #contacto {
+        background: var(--bg-dark);
+      }
+      #contacto .dolce-riso-contact {
+        border: 1px solid rgba(255,255,255,.14);
+        box-shadow: 0 28px 70px rgba(10,5,2,.28);
+      }
+      #contacto .dolce-riso-contact::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background: linear-gradient(90deg, rgba(61,38,22,.12), rgba(61,38,22,.08) 45%, rgba(61,38,22,.22));
+        pointer-events: none;
+      }
+      #contacto .dolce-riso-contact > div:not([aria-hidden="true"]) {
+        position: relative;
+        z-index: 1;
+      }
+      #contacto .dolce-riso-contact > div > div:first-child > div,
+      #contacto #formulario-pedido {
+        border: 1px solid rgba(255,255,255,.22);
+        background: rgba(61,38,22,.58);
+        -webkit-backdrop-filter: blur(16px) saturate(125%);
+        backdrop-filter: blur(16px) saturate(125%);
+        box-shadow: 0 16px 40px rgba(20,10,3,.14);
+      }
+      #contacto .dolce-riso-contact h2,
+      #contacto .dolce-riso-contact p,
+      #contacto .dolce-riso-contact span {
+        color: var(--text-light) !important;
+      }
+      #contacto .dolce-riso-contact input,
+      #contacto .dolce-riso-contact select,
+      #contacto .dolce-riso-contact textarea {
+        border-color: rgba(255,255,255,.24);
+        background: rgba(253,251,247,.96);
+      }
+
+      @media (max-width: 640px) {
+        .watermark {
+          font-size: clamp(2.25rem, 12.2vw, 5rem);
+          letter-spacing: -0.055em;
+          padding-inline: .25rem;
+        }
+        #productImg { width: 120%; max-height: 120%; }
+        #formatos .format-card { border-radius: 20px; }
+        #formatos .format-card img { width: 100%; height: 100%; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hero-product-image { animation: none; }
+      }
+
     </style>
   </head>
 
@@ -325,9 +554,7 @@
                   </div>
                 </div>
 
-                <div
-                  class="animate-float absolute inset-[6%] rounded-full overflow-hidden shadow-[0_30px_40px_-15px_rgba(0,0,0,.6)]"
-                >
+                <div class="hero-product-image">
                   <img
                     id="productImg"
                     src="arroz200inclinado.png"
@@ -379,7 +606,7 @@
 
     <section
       id="quienes-somos"
-      class="relative overflow-hidden bg-[#FDFBF7] px-5 py-20 sm:px-8 lg:px-16 lg:py-28"
+      class="relative overflow-hidden bg-[#3D2616] px-5 py-20 sm:px-8 lg:px-16 lg:py-28"
     >
       <div class="mx-auto max-w-7xl">
         <div
@@ -480,7 +707,7 @@
           ================================================ -->
 
               <article
-                class="group relative flex min-h-[250px] flex-col justify-between p-6 transition-transform duration-300 hover:-translate-y-1 sm:p-7"
+                class="essence-card group relative flex min-h-[250px] flex-col justify-between p-6 transition-transform duration-300 hover:-translate-y-1 sm:p-7"
               >
                 <!-- Fondo de cristal y reflejo cálido -->
 
@@ -545,7 +772,7 @@
           ================================================ -->
 
               <article
-                class="group relative flex min-h-[250px] flex-col justify-between p-6 transition-transform duration-300 hover:-translate-y-1 sm:p-7"
+                class="essence-card group relative flex min-h-[250px] flex-col justify-between p-6 transition-transform duration-300 hover:-translate-y-1 sm:p-7"
               >
 
                 <span
@@ -605,7 +832,7 @@
           ================================================ -->
 
               <article
-                class="group relative flex min-h-[250px] flex-col justify-between p-6 transition-transform duration-300 hover:-translate-y-1 sm:p-7"
+                class="essence-card group relative flex min-h-[250px] flex-col justify-between p-6 transition-transform duration-300 hover:-translate-y-1 sm:p-7"
               >
 
                 <span
@@ -665,7 +892,7 @@
           ================================================ -->
 
               <article
-                class="group relative flex min-h-[250px] flex-col justify-between p-6 transition-transform duration-300 hover:-translate-y-1 sm:p-7"
+                class="essence-card group relative flex min-h-[250px] flex-col justify-between p-6 transition-transform duration-300 hover:-translate-y-1 sm:p-7"
               >
 
                 <span
@@ -784,7 +1011,7 @@
 
     <section
       id="formatos"
-      class="relative overflow-hidden bg-white py-20 px-5 sm:px-8 sm:py-28"
+      class="relative overflow-hidden bg-[#3D2616] py-20 px-5 sm:px-8 sm:py-28"
       style="font-family: 'Belanosima', system-ui, sans-serif"
     >
       <!-- Símbolo reutilizable del grano de arroz -->
@@ -830,7 +1057,7 @@
         >
           <!-- ========== TARJETA 1: 200 ml ========== -->
           <div
-            class="group relative transition-transform duration-500 hover:-translate-y-2"
+            class="format-card group relative p-4 sm:p-5 transition-transform duration-500 hover:-translate-y-2"
           >
             <!-- Granitos detrás del cristal -->
             <div
@@ -865,7 +1092,7 @@
               class="relative z-10 h-full flex flex-col p-6 sm:p-7"
             >
               <div
-                class="relative mx-auto w-full max-w-[17rem] aspect-square flex items-center justify-center"
+                class="product-image-stage relative mx-auto w-full max-w-[20rem] aspect-square flex items-center justify-center"
               >
                 <img
                   src="arroz200blanco.png"
@@ -908,7 +1135,7 @@
 
           <!-- ========== TARJETA 2: 500 ml (destacada) ========== -->
           <div
-            class="group relative transition-transform duration-500 hover:-translate-y-2 md:-translate-y-4 md:hover:-translate-y-6"
+            class="format-card group relative p-4 sm:p-5 transition-transform duration-500 hover:-translate-y-2 md:-translate-y-4 md:hover:-translate-y-6"
           >
             <div
               class="absolute inset-x-0 top-0 h-3/5 pointer-events-none"
@@ -942,7 +1169,7 @@
             >
 
               <div
-                class="relative mx-auto w-full max-w-[19rem] aspect-square flex items-center justify-center mt-2"
+                class="product-image-stage relative mx-auto w-full max-w-[22rem] aspect-square flex items-center justify-center mt-2"
               >
                 <img
                   src="500arroz.png"
@@ -985,7 +1212,7 @@
 
           <!-- ========== TARJETA 3: 1 Litro ========== -->
           <div
-            class="group relative transition-transform duration-500 hover:-translate-y-2"
+            class="format-card group relative p-4 sm:p-5 transition-transform duration-500 hover:-translate-y-2"
           >
             <div
               class="absolute inset-x-0 top-0 h-3/5 pointer-events-none"
@@ -1018,7 +1245,7 @@
               class="relative z-10 h-full flex flex-col p-6 sm:p-7"
             >
               <div
-                class="relative mx-auto w-full max-w-[17rem] aspect-square flex items-center justify-center"
+                class="product-image-stage relative mx-auto w-full max-w-[20rem] aspect-square flex items-center justify-center"
               >
                 <img
                   src="arrozlitro.png"
@@ -1251,5 +1478,139 @@
         fb.classList.add('grid');
       });
     </script>
-  </body>
-</html>
+  
+
+  <!-- AJUSTE FINAL DE FONDOS: solo el HERO conserva el cacao -->
+  <style id="dolce-riso-background-fix">
+    /* Fondo general blanco; el panel del hero conserva su propio cacao */
+    body {
+      background: #FFFFFF !important;
+      color: #3D2616;
+    }
+
+    /* SECCIÓN 1: no modificar el fondo oscuro del hero */
+    body > section:first-of-type > div:first-child {
+      background-color: #3D2616;
+    }
+
+    /* SECCIÓN 2: fondo blanco y textos oscuros */
+    #quienes-somos {
+      background: #FFFFFF !important;
+      color: #3D2616 !important;
+    }
+    #quienes-somos h2,
+    #quienes-somos h3,
+    #quienes-somos strong {
+      color: #3D2616 !important;
+    }
+    #quienes-somos p {
+      color: #655345 !important;
+    }
+    #quienes-somos .essence-card {
+      background: rgba(212, 163, 115, 0.13) !important;
+      border: 1px solid rgba(139, 90, 43, 0.20) !important;
+      border-radius: 16px;
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 12px 30px rgba(74, 51, 25, 0.08);
+    }
+    #quienes-somos .essence-card h3 {
+      color: #3D2616 !important;
+    }
+    #quienes-somos .essence-card p {
+      color: #655345 !important;
+    }
+    #quienes-somos .essence-card span:not([aria-hidden="true"]) {
+      color: #94683D !important;
+    }
+    #quienes-somos .essence-card [aria-hidden="true"] {
+      color: rgba(148, 104, 61, 0.25) !important;
+    }
+    #quienes-somos .essence-card svg {
+      color: #94683D !important;
+    }
+
+    /* SECCIÓN 3: catálogo sobre blanco */
+    #formatos {
+      background: #FFFFFF !important;
+    }
+    #formatos h2,
+    #formatos h3 {
+      color: #3D2616 !important;
+    }
+    #formatos p {
+      color: #76583F !important;
+    }
+    #formatos h2 span {
+      color: #B9854B !important;
+    }
+    #formatos .format-card {
+      background: rgba(212, 163, 115, 0.13) !important;
+      border: 1px solid rgba(139, 90, 43, 0.20) !important;
+      border-radius: 24px;
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px rgba(74, 51, 25, 0.10);
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+    #formatos .format-card:hover {
+      background: rgba(212, 163, 115, 0.20) !important;
+      border-color: rgba(185, 133, 75, 0.45) !important;
+      box-shadow: 0 24px 48px rgba(74, 51, 25, 0.15);
+    }
+    #formatos .format-card img {
+      width: 96%;
+      height: 96%;
+      object-fit: contain;
+      filter: drop-shadow(0px 15px 20px rgba(74, 51, 25, 0.35));
+    }
+    #formatos .format-card a[aria-label^="Pedir"] {
+      background: #D4A373 !important;
+      color: #3D2616 !important;
+    }
+    #formatos .format-card a[aria-label^="Pedir"] i {
+      color: #3D2616 !important;
+    }
+
+    /* SECCIÓN 4: exterior blanco; se conserva la foto del panel de pedido */
+    #contacto {
+      background: #FFFFFF !important;
+    }
+    #contacto .dolce-riso-contact {
+      border: 1px solid rgba(139, 90, 43, 0.18);
+      box-shadow: 0 24px 60px rgba(74, 51, 25, 0.14);
+    }
+
+    @media (max-width: 640px) {
+      #quienes-somos .essence-card { border-radius: 16px; }
+      #formatos .format-card { border-radius: 20px; }
+      #formatos .format-card img { width: 100%; height: 100%; }
+    }
+  
+
+    /* CORRECCIÓN FINAL: contraste de la columna izquierda de la sección 2 */
+    #quienes-somos > div > div > div:first-child h2,
+    #quienes-somos > div > div > div:first-child h3,
+    #quienes-somos > div > div > div:first-child strong {
+      color: #3D2616 !important;
+    }
+
+    #quienes-somos > div > div > div:first-child p,
+    #quienes-somos > div > div > div:first-child li {
+      color: #655345 !important;
+    }
+
+    #quienes-somos > div > div > div:first-child .text-xs,
+    #quienes-somos > div > div > div:first-child .text-sm,
+    #quienes-somos > div > div > div:first-child span {
+      color: #94683D !important;
+    }
+
+    #quienes-somos > div > div > div:first-child a {
+      color: #3D2616 !important;
+    }
+
+  </style>
+
+</body>
+</html
